@@ -1,0 +1,44 @@
+<h2>Products</h2>
+
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at https://angular.io/license
+-->
+
+<!-- With *ngFor, the <div> repeats for each product in the list. -->
+<div *ngFor="let product of products">
+  <h3>
+    <!-- Set the title to be the product's name by using the property binding [ ] -->
+    <a [title]="product.name + ' details'"
+      [routerLink]="['/products', product.id]"> <!--Modify the product name anchor to include a routerLink with the product.id as a parameter.-->
+      {{ product.name }}
+    </a>
+  </h3>
+
+  <p *ngIf="product.description">
+    <b>Description:</b> {{ product.description }} 5454545
+  </p>
+
+  <p *ngIf="product.description">
+    <b>Price:</b> {{ product.price }}
+  </p>
+
+  <p>
+    <button type="button" (click)="share()">
+      Share
+    </button>
+  </p>
+
+  <button type="button" (click)="mine()">
+    Let's Test
+  </button>
+
+  <!-- Pass data to a child component:
+  The new product alert component takes a product as input from the product list. With that input, it shows or hides the Notify Me button, based on the price of the product. The Phone XL price is over $700, so the Notify Me button appears on that product. -->
+  <app-product-alerts
+    [product]="product"
+    (notify)="onNotify">
+  </app-product-alerts>
+
+</div>
